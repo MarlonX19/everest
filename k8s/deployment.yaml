@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: everest
+  labels:
+    app: everest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: everest
+  template:
+    metadata:
+      labels:
+        app: everest
+    spec:
+      containers:
+        - name: everest
+          image: everest:to-be-replaced-by-kustomize
+          env:
+            - name: TEXTILE_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: everest-textile-bucket
+                  key: bucket
+            - name: IPFS_DEPLOY_PINATA__API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: everest-pinata
+                  key: api-key
+            - name: IPFS_DEPLOY_PINATA__SECRET_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: everest-pinata
+                  key: secret-api-key
+            - name: IPFS_DEPLOY_CLOUDFLARE__ZONE
+              valueFrom:
+                secretKeyRef:
+                  name: everest-cloudflare-ipfs
+                  key: cloudflare-zone
+            - name: IPFS_DEPLOY_CLOUDFLARE__API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: everest-cloudflare-ipfs
+                  key: cloudflare-api-key
+            - name: IPFS_DEPLOY_CLOUDFLARE__API_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: everest-cloudflare-ipfs
+                  key: cloudflare-api-email
+            - name: IPFS_DEPLOY_CLOUDFLARE__RECORD
+              valueFrom:
+                secretKeyRef:
+                  name: everest-cloudflare-ipfs
+                  key: cloudflare-record
+            - name: CLOUDFLARE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: everest-cloudflare
+                  key: token
+            - name: CLOUDFLARE_ZONE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: everest-cloudflare
+                  key: zone-id
+            - name: CLOUDFLARE_RECORD_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: everest-cloudflare
+                  key: record-name
+            - name: CLOUDFLARE_RECORD_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: everest-cloudflare
+                  key: record-domain
+            - name: SUBGRAPH_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: everest-subgraph
+                  key: name

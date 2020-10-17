@@ -1,0 +1,9 @@
+.idea
+.DS_Store
+node_modules
+.vscode/
+yarn-error.log
+.privkey.txt
+.infurakey.txt
+build
+.categories-privkey.txt

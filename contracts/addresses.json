@@ -1,0 +1,26 @@
+{
+  "ropsten": {
+    "updated-on": "April 22nd 2020",
+    "ethereumDIDRegistry": "0xdca7ef03e98e0dc2b855be647c39abe984fcf21b",
+    "dai": "0x82A351cdFB726DafC8624d8bD6B0bc98d34Ffec1",
+    "blockNumber": "7766518",
+    "everest": "0x0AD791CBC700eAecd34f017A6e40E3516daC61fE",
+    "reserveBank": "0x2E845DA9487d0eF075E67Cde34FAc2252799984E",
+    "registry": "0x45650e899F2b25844d5ad7f0020159729341Cf27"
+  },
+  "ganache": {
+      "everest": "0x9b1f7F645351AF3631a656421eD2e40f2802E6c0",
+      "ethereumDIDRegistry": "0x0290FB167208Af455bB137780163b7B7a9a10C16",
+      "dai": "0xCfEB869F69431e42cdB54A4F4f105C19C080A601",
+      "reserveBank": "0x4C65804f4b00a50e0750293973D7EAf32602587E"
+  },
+  "mainnet": {
+    "updated-on": "April 22nd 2020",
+    "ethereumDIDRegistry": "0xdCa7EF03e98e0DC2B855bE647C39ABe984fcF21B",
+    "dai": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+    "blockNumber": "9923744",
+    "everest": "0x445B774C012c5418d6D885f6cbfEB049a7FE6558",
+    "reserveBank": "0x26E4AeB870F7E9cd8A0877F8Ab672FF8113720A7",
+    "registry": "0x5bAba73ba37d58AB7E17fff1FfFaB5719F9C32A0"
+  }
+}

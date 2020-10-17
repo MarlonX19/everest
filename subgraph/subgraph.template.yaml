@@ -1,0 +1,78 @@
+specVersion: 0.0.2
+description: Universally shared projects registry
+repository: https://github.com/graphprotocol/everest
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Everest
+    network: {{network}}
+    source:
+      address: '{{everestAddress}}'
+      abi: Everest
+      startBlock: {{blockNumber}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/mappings/everest.ts
+      entities:
+        - Project
+        - Category
+        - Challenge
+        - Everest
+        - Vote
+        - User
+      abis:
+        - name: Everest
+          file: ../contracts/abis/Everest.json
+        - name: Dai
+          file: ../contracts/abis/dai.json
+      eventHandlers:
+        - event: NewMember(indexed address,uint256,uint256)
+          handler: handleNewMember
+        - event: MemberExited(indexed address)
+          handler: handleMemberExited
+        - event: CharterUpdated(indexed bytes32)
+          handler: handleCharterUpdated
+        - event: CategoriesUpdated(indexed bytes32)
+          handler: handleCategoriesUpdated
+        - event: Withdrawal(indexed address,uint256)
+          handler: handleWithdrawal
+        - event: EverestDeployed(address,address,uint256,uint256,uint256,bytes32,bytes32,address,address,address,uint256)
+          handler: handleEverestDeployed
+        - event: MemberChallenged(indexed address,indexed uint256,indexed address,uint256,bytes32)
+          handler: handleMemberChallenged
+        - event: SubmitVote(indexed uint256,indexed address,indexed address,uint8,uint256)
+          handler: handleSubmitVote
+        - event: ChallengeFailed(indexed address,indexed uint256,uint256,uint256,uint256,uint256)
+          handler: handleChallengeFailed
+        - event: ChallengeSucceeded(indexed address,indexed uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleChallengeSucceeded
+  - kind: ethereum/contract
+    name: EthereumDIDRegistry
+    network: {{network}}
+    source:
+      address: '0xdCa7EF03e98e0DC2B855bE647C39ABe984fcF21B'
+      abi: EthereumDIDRegistry
+      startBlock: {{blockNumber}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/mappings/ethereumDIDRegistry.ts
+      entities:
+        - Project
+        - User
+        - Category
+        - Everest
+      abis:
+        - name: EthereumDIDRegistry
+          file: ../contracts/abis/EthereumDIDRegistry.json
+      eventHandlers:
+        - event: DIDOwnerChanged(indexed address,address,uint256)
+          handler: handleDIDOwnerChanged
+        - event: DIDDelegateChanged(indexed address,bytes32,address,uint256,uint256)
+          handler: handleDIDDelegateChanged
+        - event: DIDAttributeChanged(indexed address,bytes32,bytes,uint256,uint256)
+          handler: handleDIDAttributeChanged
